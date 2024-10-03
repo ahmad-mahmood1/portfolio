@@ -1,0 +1,26 @@
+import { Card, CardContent, CardHeader } from '@/app/components/ui/card';
+import { urlFor } from '@/app/lib/utils';
+import { client } from '@/sanity/client';
+
+export default async function Projects() {
+  const projects = await client.fetch('*[_type == "project"]');
+
+  return (
+    <div className='space-y-6 text-center'>
+      <h2>Projects</h2>
+      <div className='space-y-3 md:flex md:flex-wrap md:gap-x-2 md:space-y-0'>
+        {projects?.map((project: any) => (
+          <Card key={project.title} className='text-left shadow-lg md:flex-1'>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            {project.images?.map((img: any, index: number) => <img src={urlFor(img)?.url()} alt={`${project.title}_${index}`} key={`${project.title}_${index}`} className='w-full rounded-t-md' />)}
+
+            <CardHeader className='text-xl'>{project.title}</CardHeader>
+            <CardContent>
+              <p>{project.description}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}

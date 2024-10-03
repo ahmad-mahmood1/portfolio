@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --background-light: 220, 20%, 97%;
+    --background-medium: 228, 16%, 94%;
+    --foreground: 240 10% 3.9%;
+    --link: 202 100% 40%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 227 10% 27%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 100% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --radius: 0.5rem;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-background font-sans text-base text-foreground;
+  }
+  h1 {
+    @apply font-libre text-wrap text-4xl lg:text-6xl;
+  }
+  h2 {
+    @apply font-libre text-wrap text-2xl;
+  }
+}
+
+@layer utilities {
+  .flex-center-between {
+    @apply flex items-center justify-between;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
