@@ -36,10 +36,10 @@
     @apply bg-background font-sans text-base text-foreground;
   }
   h1 {
-    @apply font-libre text-wrap text-4xl lg:text-6xl;
+    @apply text-wrap font-libre text-4xl lg:text-6xl;
   }
   h2 {
-    @apply font-libre text-wrap text-2xl;
+    @apply text-wrap font-libre text-2xl;
   }
 }
 
@@ -47,7 +47,7 @@
   .flex-center-between {
     @apply flex items-center justify-between;
   }
-  .text-balance {
-    text-wrap: balance;
+  .absolute-center {
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform;
   }
 }

@@ -11,7 +11,7 @@ export default async function About() {
       <img src={profileImage} className='w-36 rounded-full' alt='profile-image' />
       <div className='space-y-4'>
         <h1>Hi! My name is {about?.[0].name}</h1>
-        <p className='text-lg font-bold'>{about?.[0].summary}</p>
+        <p className='font-semi text-lg'>{about?.[0].summary}</p>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import About from '@/app/components/about';
-import Projects from '@/app/components/projects';
+import Projects from '@/app/components/projects/projects';
 import Skills from '@/app/components/skills';
 
 export default async function IndexPage() {
