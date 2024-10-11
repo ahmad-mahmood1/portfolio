@@ -5,6 +5,15 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+  images: {
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cnd.sanity.io',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

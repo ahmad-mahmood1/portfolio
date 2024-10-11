@@ -1,8 +1,9 @@
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import Link from 'next/link';
 
-import { ProjectImagesCarousel } from '@/app/components/projects/project-image-carousel';
+import SanityImage from '@/app/components/sanity-image';
 import { Card, CardContent, CardHeader } from '@/app/components/ui/card';
-import { urlFor } from '@/app/lib/utils';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/app/components/ui/carousel';
 import { client } from '@/sanity/client';
 
 export default async function Projects() {
@@ -11,13 +12,21 @@ export default async function Projects() {
   return (
     <div className='space-y-6 text-center'>
       <h2>Projects</h2>
-      <div className='space-y-3 md:flex md:flex-wrap md:gap-x-2 md:space-y-0'>
+      <div className='hidden grid-cols-2 gap-4 md:grid'>
         {projects?.map((project: any) => {
-          const imageUrls = project.images.map((img: any) => urlFor(img)?.url());
-
           return (
-            <Card className='rounded-t-none text-left shadow-lg md:flex-1' key={project.title}>
-              <ProjectImagesCarousel imageUrls={imageUrls} />
+            <Card className='relative rounded-t-none text-left shadow-lg md:flex-1' key={project.title}>
+              <Carousel className='z-2'>
+                <CarouselContent>
+                  {project.images.map((img: SanityImageSource, index: number) => (
+                    <CarouselItem key={index}>
+                      <SanityImage imgSource={img} alt={`${project.title}-image-${index}`} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
               <Link href={project.projectUrl || ''} target='__blank' className='group/item text-left shadow-lg md:flex-1'>
                 <CardHeader className='text-xl group-hover/item:underline'>{project.title}</CardHeader>
                 <CardContent>
@@ -27,6 +36,26 @@ export default async function Projects() {
             </Card>
           );
         })}
+      </div>
+
+      <div className='block md:hidden'>
+        <Carousel className='z-2'>
+          <CarouselContent>
+            {projects.map((project: any) => (
+              <CarouselItem key={project.title}>
+                <SanityImage imgSource={project.images[0]} alt={`${project.title}-image`} />
+                <Link href={project.projectUrl || ''} target='__blank' className='group/item text-left shadow-lg md:flex-1'>
+                  <CardHeader className='text-xl group-hover/item:underline'>{project.title}</CardHeader>
+                  <CardContent>
+                    <p>{project.description}</p>
+                  </CardContent>
+                </Link>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className='-left-2' />
+          <CarouselNext className='-right-2' />
+        </Carousel>
       </div>
     </div>
   );
